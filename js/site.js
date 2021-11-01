@@ -6,8 +6,17 @@ function getValues(params) {
     let startValue = document.getElementById("startValue").value;
     let endValue = document.getElementById("endValue").value;
 
-    //we call generateNumbers
-    let numbers = generateNumbers(startValue, endValue);
+    //parse into intergets
+    startValue = parseInt(startValue);
+    endValue = parseInt(endValue);
+
+    if(Number.isInteger(startValue)  && Number.isInteger(endValue)){
+        //we call generateNumbers
+         let numbers = generateNumbers(startValue, endValue);
+
+    } else {
+        alert("You must enter numbers")
+    }
 
     //we call displayNumbers
  
