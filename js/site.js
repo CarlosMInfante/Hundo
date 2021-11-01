@@ -5,21 +5,21 @@ function getValues(params) {
     // "let" is a block scoped keyword here because inside the function.
     let startValue = document.getElementById("startValue").value;
     let endValue = document.getElementById("endValue").value;
+    let numbers = [];
 
     //parse into intergets
     startValue = parseInt(startValue);
     endValue = parseInt(endValue);
 
-    if(Number.isInteger(startValue)  && Number.isInteger(endValue)){
-        //we call generateNumbers
-         let numbers = generateNumbers(startValue, endValue);
+        if(Number.isInteger(startValue)  && Number.isInteger(endValue)){
+            //we call generateNumbers
+            let numbers = generateNumbers(startValue, endValue);
+            //we call displayNumbers
+            displayNumbers(numbers);
 
-    } else {
-        alert("You must enter numbers")
-    }
-
-    //we call displayNumbers
- 
+        } else {
+            alert("You must enter numbers")
+        }
     }
 
 //Generate numbers from startValue to the endValue
@@ -41,6 +41,24 @@ function generateNumbers(sValue, eValue) {
 
 //Displace the numbers and mark the even numbers bold.
 //Display or view functions.
-function displayNumbers(params) {
-    
+function displayNumbers(numbers) {
+
+    let templateRows="";
+
+    for (let index = 0; index < numbers.length; index++){
+        
+        let className= "even";
+        let number = numbers[index];
+
+        if(number % 2 == 0){
+            className = "even";
+        }else{
+            className = "odd";
+        }
+        templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+
+    }    
+
+    document.getElementById("results").innerHTML = templateRows;
+
 }
